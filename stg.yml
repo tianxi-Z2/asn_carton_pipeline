@@ -1,0 +1,94 @@
+bq:
+  project-id: 'sofg-edp-stg-data'
+  location: 'US'
+  datasets:
+    datamart:
+      name: datamart
+      location: US
+      project_id: sofg-edp-stg-data
+    buxton:
+      name: buxton
+      location: US
+      project_id: sofg-edp-stg-data
+    power_review:
+      name: power_review
+      location: US
+      project_id: sofg-edp-stg-data
+    commerce_hub:
+      name: commerce_hub
+      location: US
+      project_id: sofg-edp-stg-data
+    stg_asipsa2:
+      name: stg_asipsa2
+      location: US
+      project_id: sofg-edp-stg-data
+    stg_orce:
+      name: stg_orce
+      location: US
+      project_id: sofg-edp-stg-data
+    stg_sfcc:
+      name: stg_sfcc
+      location: US
+      project_id: sofg-edp-stg-data
+    sml:
+      name: sml
+      location: US
+      project_id: sofg-edp-dev-data
+    stg_sml:
+      name: stg_sml
+      location: US
+      project_id: sofg-edp-dev-data
+    stg_attentive:
+      name: stg_attentive
+      location: US
+      project_id: sofg-edp-dev-data
+
+    # PayPal datasets
+    stg_paypal:
+      name: stg_paypal
+      location: US
+      project_id: sofg-edp-dev-data
+
+gcs:
+  project_id: 'sofg-edp-stg-data'
+
+bastion:
+  name: stg-pipe-iap-bastion
+  project_id: 'sofg-edp-stg-pipe'
+  zone: 'us-east1-b'
+
+data_fusion:
+  project_id: 'sofg-edp-stg-pipe'
+  instance_name: 'stg-pipe-data-fusion'
+  location: 'us-east1'
+  namespace: 'default'
+
+aswms_sqlserver:
+  host: '10.0.52.6'
+  port: '1433'
+
+asipsa2_sqlserver:
+  host: '10.112.59.142'
+  port: '1433'
+
+airflow:
+  name: 'stg-pipe-composer-transform'
+  project_id: 'sofg-edp-stg-pipe'
+  location: 'us-east1'
+  base_lib_path: '/home/airflow/gcs/dags'
+
+
+# PayPal specific configuration
+paypal:
+  api:
+    secret_name: 'paypal-api-credentials'
+  storage:
+    landing_bucket: 'sofg-edp-dev-data-landing'
+    extract_bucket: 'sofg-edp-dev-data-extract'
+  bigquery:
+    staging_dataset: 'stg_paypal'
+    datamart_dataset: 'datamart'
+    table_name: 'paypal_transactions'
+  schedule:
+    interval: '0 6 * * *'
+    timezone: 'America/New_York'
